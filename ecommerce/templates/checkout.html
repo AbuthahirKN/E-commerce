@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% load crispy_forms_tags %}
+<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});"
+     xmlns="http://www.w3.org/1999/html">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>payment/span></p>
+            <h1 class="mb-0 bread"> Cart products</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block content %}
+
+<section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-7 ftco-animate">
+              <form action="#" method="post" class="billing-form " >
+
+							<h3 class="mb-4 billing-heading">Billing Details</h3>
+{% csrf_token %}
+                              {{form|crispy}}
+                  <div>
+                   <input type="submit" class="btn btn-success " value="place order">
+
+	          	  </div>
+	          </form><!-- END -->
+
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+    </section> <!-- .section -->
+{% endblock %}

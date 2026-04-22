@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Payment</span></p>
+            <h1 class="mb-0 bread">Payment</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+{%block content %}
+{% load crispy_forms_tags %}
+<div class="container mt-3 p-5 w-50 text-center border border-2 ">
+
+<form method=" post">
+    <div class="container   text-center">
+    <h4>Payment Successful</h4>
+    <h4>Thank you For your Purchase</h4>
+    <a href="{% url 'shop:categories' %}">Go To HOme</a>
+
+</div>
+</form>
+
+</div>
+{% endblock %}
