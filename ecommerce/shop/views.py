@@ -1,11 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from django.views import View
 from shop.forms import SignupForm,LoginForm,CategoryForm,ProductForm,StockForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from shop.models import Category,Product
-
-
+from django.utils.decorators import method_decorator
+from shop.decorators import admin_required
 
 
 # Create your views here.
@@ -25,6 +26,8 @@ class Register(View):
         form_instance=SignupForm()
         context={'form':form_instance}
         return render(request,'register.html',context)
+@method_decorator(admin_required,name='dispatch')
+@method_decorator(login_required,name='dispatch')
 class AddCategory(View):
     def post(self,request):
         form_instance = CategoryForm(request.POST,request.FILES)
@@ -35,6 +38,9 @@ class AddCategory(View):
         form_instance = CategoryForm()
         context={'form':form_instance}
         return render(request,'addcategory.html',context)
+
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(login_required,name='dispatch')
 class AddProduct(View):
     def post(self,request):
         form_instance = ProductForm(request.POST,request.FILES)
@@ -56,6 +62,8 @@ class ProductDetails(View):
         p = Product.objects.get(id=i)
         context={'product':p}
         return render(request, 'productdetails.html',context)
+@method_decorator(admin_required,name='dispatch')
+@method_decorator(login_required,name='dispatch')
 class AddStock(View):
     def post(self,request,i):
         p = Product.objects.get(id=i)
